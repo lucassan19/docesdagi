@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doces da Gii</title>
+    <link rel="stylesheet" href="est.css">
+</head>
+<body>
+    <h1>Doces da Gii</h1>
+    <label for="bolos">Selecione os sabores abaixo: </label><br>
+    <input type="text" id="bolos" name="bolos" list="sabores" placeholder="Escolha os sabores" />
+    <button onclick="adicionarSabor()">Adicionar sabor</button><p></p>
+    <button onclick="limparLista()"> Limpar itens</button>
+
+
+    <datalist id="sabores">
+        <option value="Bolo de cenoura com cobertura de chocolate e granulado de chocolate"></option>
+        <option value="Bolo de chocolate com cobertura de chocolate e granulado de chocolate"></option>
+        <option value="Bolo de leite ninho com cobertura de leite ninho"></option>
+        <option value="Pão de mel"></option>
+    </datalist>
+    <ul id="listaSabores"></ul>
+
+    -- Clique aqui para enviar seu pedido no WhatsApp
+    <button onclick="enviarPedidoNoWhatsApp()">Enviar pedido pelo WhatsApp </button>
+    
+<script>
+    // Objeto para armazenar sabores e suas quantidades
+    const saboresSelecionados = {};
+
+    function adicionarSabor() {
+        const input = document.getElementById("bolos");
+        const sabor = input.value;
+
+        if (sabor) {
+            // Incrementa a quantidade se o sabor já foi selecionado, senão adiciona o sabor com quantidade 1
+            if (saboresSelecionados[sabor]) {
+                saboresSelecionados[sabor]++;
+            } else {
+                saboresSelecionados[sabor] = 1;
+            }
+
+            // Limpa o campo de entrada
+            input.value = '';
+            
+            // Atualiza a lista de sabores exibida
+            atualizarLista();
+        }
+    }
+
+    function atualizarLista() {
+        const listaSabores = document.getElementById("listaSabores");
+        listaSabores.innerHTML = ''; // Limpa a lista para atualizar
+
+        // Exibe cada sabor com sua quantidade selecionada
+        for (const sabor in saboresSelecionados) {
+            const li = document.createElement("li");
+            li.textContent = `${sabor} - Quantidade: ${saboresSelecionados[sabor]}`;
+            listaSabores.appendChild(li);
+        }
+    }
+
+    function enviarPedidoNoWhatsApp() {
+        // número de telefone
+        const telefone = "5517981150048";
+        let mensagem ="Olá gostaria de fazer um pedido: \n";
+
+        // formula a mensagem com os sabores e quantidades
+        for (const sabor in saboresSelecionados) {
+            mensagem += `${sabor} - Quantidade: ${saboresSelecionados[sabor]}\n`;
+        }
+         
+        //codifica a mensagem para a URL
+        const mensagemCodificada = encodeURIComponent(mensagem);
+
+        //cria URL para WhatsApp
+        const urlWhatsApp =`https://wa.me/${telefone}?text=${mensagemCodificada}`;
+
+        //abre o WhatsApp em uma nova pagina
+        window.open(urlWhatsApp, "_blank");
+    }
+
+    function limparLista () {
+       for (let sabor in saboresSelecionados) {
+        delete saboresSelecionados[sabor];
+       }
+       atualizarLista();
+    }
+</script>
+</body>
+</html>
