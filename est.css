@@ -1,58 +1,105 @@
-table {
-    background-color: blueviolet;
-    color: wheat
-}
+/* Estilos básicos para o layout do cardápio */
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    position: relative;
-   text-align: center;
-   color:rgb(48, 5, 5);
-   background-color: rgb(230, 164, 140);
+    font-family: Arial, sans-serif;
+    background-color: #f8f3ed;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
-.container {
-    text-align: center;
-    max-width: 400px;
-    width: 90%; /* Responsivo para ocupar 90% da tela em dispositivos menores */
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+h1 {
+    font-size: 2em;
+    color: #8b4513;
     margin-top: 20px;
 }
 
-@media (max-width: 480px) {
-    h1 {
-        font-size: 20px;
-    }
-}
-@media (min-width: 768px) {
-    h1 {
-        font-size: 28px;
-    }
-
-    .container {
-        max-width: 500px;
-    }
-}
-    
-
-
-input {
-    background-color:rgb(221, 228, 234);
-    border: 3px;
-    border-radius: 3px;  
+/* Estilizando os inputs */
+label {
+    font-size: 1.2em;
+    margin-top: 10px;
+    color: #8b4513;
 }
 
+input[type="text"] {
+    width: 70%;
+    padding: 10px;
+    border: 2px solid #d3a87c;
+    border-radius: 5px;
+    font-size: 1em;
+    margin-top: 5px;
+    outline: none;
+}
 
+input[type="text"]:focus {
+    border-color: #8b4513;
+}
+
+/* Botões de ação */
 button {
-    border-radius: 3px;
-    color: black;
-    background-color: rgb(236, 239, 238);
-    
+    background-color: #8b4513;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
 }
-button:hover {
-color: blue;
-cursor: pointer;
 
+button:hover {
+    background-color: #d3a87c;
+}
+
+/* Lista de sabores selecionados */
+ul {
+    list-style-type: none;
+    padding: 0;
+    width: 80%;
+    margin-top: 15px;
+}
+
+ul li {
+    font-size: 1em;
+    background-color: #fff;
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #d3a87c;
+    border-radius: 5px;
+    text-align: left;
+    color: #333;
+}
+
+/* Estilo para o botão de envio de pedido */
+button:last-of-type {
+    background-color: #28a745;
+    width: 80%;
+}
+
+button:last-of-type:hover {
+    background-color: #218838;
+}
+
+/* Media queries para responsividade */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8em;
+    }
+
+    input[type="text"] {
+        width: 90%;
+    }
+
+    ul li {
+        font-size: 0.9em;
+    }
+
+    button {
+        width: 90%;
+        padding: 8px;
+        font-size: 0.9em;
+    }
 }
